@@ -1,0 +1,17 @@
+---
+title: "Using GetFREData"
+author: "Marcelo Perlin"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using GetFREData to import corporate information from B3}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r}
+library(GetFREData)
+
+# todo
+```
+
