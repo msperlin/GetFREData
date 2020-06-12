@@ -1,7 +1,7 @@
 #' Helps users search for a company
 #'
 #' @param char_to_search Character for partial matching
-#' @inheritParams get_dfp_data
+#' @inheritParams get_fre_data
 #'
 #' @return A dataframe with companies
 #' @export
@@ -11,7 +11,7 @@
 #' \dontrun{ # dontrun: keep cran check fast
 #' df <- search_company('petrobras')
 #' }
-search_company <- function(char_to_search, cache_folder = 'gcvmd_cache') {
+search_company <- function(char_to_search, cache_folder = 'gfred_cache') {
 
   df_cvm <- get_info_companies(cache_folder)
 

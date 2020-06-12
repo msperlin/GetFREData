@@ -25,9 +25,10 @@ my_download_file <- function(dl_link,
 
   Sys.sleep(0.5)
 
-  #browser()
   if (file.exists(dest_file)) {
-    message('\tFile already exists', appendLF = TRUE)
+
+    if (!be_quiet) message(' no dl (file exists)', appendLF = FALSE)
+
     return(TRUE)
   }
 
@@ -80,7 +81,8 @@ my_download_file <- function(dl_link,
               appendLF = FALSE)
       Sys.sleep(1)
     } else {
-      message('\tSuccess', appendLF = TRUE)
+
+      if (!be_quiet) message('\tSuccess', appendLF = TRUE)
       return(TRUE)
     }
 

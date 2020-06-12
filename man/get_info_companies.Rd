@@ -7,7 +7,7 @@
 get_info_companies(cache_folder = "gcvmd_cache")
 }
 \arguments{
-\item{cache_folder}{Path of cache folder to keep memoise and zip files}
+\item{cache_folder}{Path of cache folder to keep cache and zip files}
 }
 \value{
 A dataframe with several information about B3 companies

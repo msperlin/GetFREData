@@ -1,24 +1,3 @@
-#' Converts cnpj from text to numeric
-#'
-#' @param cnpj_in The character (single) of cnpj
-#'
-#' @return A numeric cnpj
-#' @export
-#'
-#' @examples
-#'
-#' fix_cnpj('00.111.004/005')
-#'
-fix_cnpj <- function(cnpj_in) {
-
-  temp <- stringr::str_replace_all(cnpj_in, stringr::fixed('.'), '')
-  temp <- stringr::str_replace_all(temp, '/|-', '')
-
-  cnpj_out <- as.numeric(temp)
-
-  return(cnpj_out)
-}
-
 #' Makes sure people dont drink at afternoon
 #'
 #' @return A responsible drink
@@ -30,7 +9,8 @@ select_responsible_beverage <- function() {
   # be responsible! - only drink after 18:00
   hour_now <- as.numeric(format(Sys.time(), '%H'))
 
-  day_beverages <- c('coffee', 'mate-gaucho', 'english tea')
+  day_beverages <- c('coffee', 'mate cuiudo', 'english tea', 'terere', 'fanta uva',
+                     'tap water')
   night_beverages <- c('Cuba Libre', 'Caipirinha', 'Pisco Sour',
                        'Mojito', 'Beer', 'Wine', 'Coco Loco',
                        'Cachaca Joao Barreiro')
@@ -42,4 +22,45 @@ select_responsible_beverage <- function() {
   }
 
   return(my_beverage)
+}
+
+#' Merges (row wise) dataframes from different list, using names of dataframes as index
+#'
+#' @param l_1 First dataframe
+#' @param l_2 Second dataframe
+#'
+#' @return A list with row-joined dataframes (same names as l.1)
+#' @export
+#'
+#' @examples
+#'
+#' l_1 <- list(x = data.frame(runif(10)) )
+#' l_2 <- list(x = data.frame(runif(10)) )
+#'
+#' l <- my_merge_dfs_lists(l_1, l_2)
+#'
+my_merge_dfs_lists <- function(l_1, l_2) {
+  names_1 <- names(l_1)
+  names_2 <- names(l_2)
+
+  if (is.null(names_1)) return(l_2)
+
+  if (is.null(names_2)) return(l_1)
+
+  if (!all(names_1 == names_2)) {
+    stop('Cant bind dataframes. Names in lists dont match!')
+  }
+
+  n_elem <- length(l_1)
+
+  l_out <- list()
+  for (i_l in seq(n_elem)) {
+
+    l_out[[i_l]] <- dplyr::bind_rows(l_1[[i_l]], l_2[[i_l]])
+
+  }
+
+  names(l_out) <- names(l_2)
+  return(l_out)
+
 }
