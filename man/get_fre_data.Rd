@@ -6,7 +6,7 @@
 \usage{
 get_fre_data(
   companies_cvm_codes = NULL,
-  first_year = 2010,
+  first_year = lubridate::year(Sys.Date()) - 2,
   last_year = lubridate::year(Sys.Date()),
   fre_to_read = "last",
   cache_folder = "gfred_cache"
@@ -34,6 +34,6 @@ choices such as dates and companies.
 }
 \examples{
 \dontrun{
-l_fre <- get_fre_data()
+l_fre <- get_fre_data(18627)
 }
 }

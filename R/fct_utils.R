@@ -1,10 +1,3 @@
-#' Makes sure people dont drink at afternoon
-#'
-#' @return A responsible drink
-#' @export
-#'
-#' @examples
-#' print(select_responsible_beverage())
 select_responsible_beverage <- function() {
   # be responsible! - only drink after 18:00
   hour_now <- as.numeric(format(Sys.time(), '%H'))
@@ -24,21 +17,7 @@ select_responsible_beverage <- function() {
   return(my_beverage)
 }
 
-#' Merges (row wise) dataframes from different list, using names of dataframes as index
-#'
-#' @param l_1 First dataframe
-#' @param l_2 Second dataframe
-#'
-#' @return A list with row-joined dataframes (same names as l.1)
-#' @export
-#'
-#' @examples
-#'
-#' l_1 <- list(x = data.frame(runif(10)) )
-#' l_2 <- list(x = data.frame(runif(10)) )
-#'
-#' l <- my_merge_dfs_lists(l_1, l_2)
-#'
+
 my_merge_dfs_lists <- function(l_1, l_2) {
   names_1 <- names(l_1)
   names_2 <- names(l_2)

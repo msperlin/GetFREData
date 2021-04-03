@@ -1,14 +1,3 @@
-#' Fetches ftp contents
-#'
-#' @param ftp_url The url of ftp
-#'
-#' @return A dataframe with links and files
-#' @export
-#'
-#' @examples
-#' \dontrun{ # keep cran fast
-#' df_ftp <- get_contents_ftp('http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/')
-#' }
 get_contents_ftp <- function(ftp_url) {
 
   my_html <- xml2::read_html(ftp_url)

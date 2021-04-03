@@ -1,19 +1,4 @@
-#' Reads a single FRE zip file downloaded from Bovespa
-#'
-#' @param my_zip_file Full path to zip file
-#' @param df_file_in Dataframe with information about file
-#' @param folder_to_unzip Folder to unzip files (default = tempdir())
-#' @inheritParams get_fre_data
-#'
-#' @return A list with several dataframes containing financial statements
-#' @export
-#'
-#' @examples
-#'
-#' \dontrun{
-#' # no examples fit here
-#' }
-#'
+
 read_single_fre_zip_file <- function(my_zip_file,
                                      df_file_in,
                                      cache_folder = 'gfred_cache',

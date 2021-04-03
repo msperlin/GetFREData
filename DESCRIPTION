@@ -1,10 +1,11 @@
 Package: GetFREData
 Title: Reading Corporate Data of Public Traded Companies from B3
-Version: 0.5
-Date: 2020-06-11
+Version: 0.6
+Date: 2021-04-03
 Authors@R: c(person("Marcelo", "Perlin", email = "marceloperlin@gmail.com", role = c("aut", "cre")),
              person("Guilherme", "Kirch", email = "guilhermekirch@gmail.com", role = c("aut")))  
-Description: Reads corporate data such as board composition and compensation for companies traded at B3, the Brasilian exchange <http://www.bmfbovespa.com.br/en_us/products/listed-equities-and-derivatives/equities/listed-companies.htm>. All data is downloaded and imported from CVM's ftp site <http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/>.
+Description: Reads corporate data such as board composition and compensation for companies traded at B3, 
+             the Brazilian exchange <http://www.b3.com.br/>. All data is downloaded and imported from the ftp site <http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/>.
 Depends:
     R (>= 3.5.0)
 Imports: 
@@ -24,8 +25,8 @@ ByteCompile: true
 License: GPL-2
 BugReports: https://github.com/msperlin/GetFREData/issues
 URL: https://github.com/msperlin/GetFREData/
-LazyData: true
-RoxygenNote: 7.1.0
+LazyData: false
+RoxygenNote: 7.1.1
 Suggests: knitr,
     rmarkdown,
     testthat,

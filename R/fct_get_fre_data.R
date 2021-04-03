@@ -14,12 +14,14 @@
 #' @return A list of tibbles, where each element is a different table from the FRE system
 #' @export
 #'
+#' @importFrom magrittr %>%
+#'
 #' @examples
 #' \dontrun{
-#' l_fre <- get_fre_data()
+#' l_fre <- get_fre_data(18627)
 #' }
 get_fre_data <- function(companies_cvm_codes = NULL,
-                         first_year = 2010,
+                         first_year = lubridate::year(Sys.Date()) - 2,
                          last_year = lubridate::year(Sys.Date()),
                          fre_to_read = 'last',
                          cache_folder = 'gfred_cache') {
@@ -65,8 +67,8 @@ get_fre_data <- function(companies_cvm_codes = NULL,
     df_fre_links_to_read <- df_fre_full_links
   }
 
-  message('Found ', nrow(df_fre_links_to_read),
-          ' FRE docs to read')
+  message('\nFound ', nrow(df_fre_links_to_read),
+          ' FRE docs to read\n')
 
   # sort by company and date
   df_fre_links_to_read <- df_fre_links_to_read %>%
@@ -80,30 +82,20 @@ get_fre_data <- function(companies_cvm_codes = NULL,
                       .f = download_read_fre_zip_files,
                       cache_folder = cache_folder)
 
-
-  # merge all lists into one (with loops ugh)
   l_out <- l_fre[[1]]
-  for (i_list in 2:length(l_fre)) {
-    l_out <- my_merge_dfs_lists(l_out, l_fre[[i_list]])
+  if (length(l_fre) != 1) {
+
+    for (i_list in 2:length(l_fre)) {
+      l_out <- my_merge_dfs_lists(l_out, l_fre[[i_list]])
+    }
+
   }
 
   return(l_out)
 
-
 }
 
-#' Downloads and reads FRE file from ftp
-#'
-#' @param df_file_in A dataframe with information about file
-#' @inheritParams get_fre_data
-#'
-#' @return A list with all tables from zip file
-#' @export
-#'
-#' @examples
-#' \dontrun{
-#' # no example fits here
-#' }
+# Downloads and reads FRE file from ftp
 download_read_fre_zip_files <- function(df_file_in,
                                         cache_folder) {
 

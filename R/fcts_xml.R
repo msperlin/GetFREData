@@ -1,16 +1,4 @@
-#' Fix NULL values in dataframe
-#'
-#' @param x Am object, possibly NULL
-#' @param type.info Type of object
-#' @param format.date Format of data, as string
-#'
-#' @return A single object
-#' @export
-#'
-#' @examples
-#'
-#' x <- NULL
-#' x2 <- fix.fct(x)
+
 fix.fct <- function(x, type.info = 'character', format.date = '%Y-%m-%d') {
   if (is.null(x)) return(NA)
 
@@ -38,16 +26,7 @@ fix.fct <- function(x, type.info = 'character', format.date = '%Y-%m-%d') {
   return(x)
 }
 
-#' Reads XML data for compensation
-#'
-#' @param x A list with compensation data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+
 xml.fct.compensation <- function(x) {
 
   x <- x$RemuneracaoReconhecidaOrgao$RemuneracaoReconhecidaOrgao
@@ -101,16 +80,7 @@ xml.fct.compensation <- function(x) {
   return(df.out)
 }
 
-#' Reads XML data for compensation summary data
-#'
-#' @param x A list with compensation summary data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+
 xml.fct.compensation.summary <- function(x) {
 
   if (is.null(x)) return(data.frame())
@@ -135,16 +105,7 @@ xml.fct.compensation.summary <- function(x) {
 }
 
 
-#' Reads XML data for capita
-#'
-#' @param x A list with capital summary data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+
 xml.fct.capital <- function(x) {
   df.out <- data.frame(date.increase.capital = as.Date(fix.fct(x$DataDeliberacao)),
                        name.authorizing.department = fix.fct(x$NomeOrgaoDeliberacaoAcrescimo),
@@ -157,16 +118,7 @@ xml.fct.capital <- function(x) {
   return(df.out)
 }
 
-#' Reads XML data for stock value
-#'
-#' @param x A list with stock value data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+
 xml.fct.stock.values <- function(x) {
 
   if (is.null(x$CotacaoMedia)) {
@@ -203,17 +155,6 @@ xml.fct.stock.values <- function(x) {
 
 
 
-
-#' Reads XML data for stockholder data
-#'
-#' @param x A list with stockholder data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
 xml.fct.stockholder <- function(x) {
 
   df.out <- data.frame(type.register = x$TipoRegistro,
@@ -238,16 +179,7 @@ xml.fct.stockholder <- function(x) {
 }
 
 
-#' Reads XML data for transaction data
-#'
-#' @param x A list with transaction data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for transaction data
 xml.fct.transactions.related <- function(x) {
 
   df.out <- data.frame(id.transaction = fix.fct(x$NumIdtTnsaPateRelc),
@@ -266,16 +198,7 @@ xml.fct.transactions.related <- function(x) {
   return(df.out)
 }
 
-#' Reads XML data for splits/inplits data
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for splits/inplits data
 xml.fct.splits.inplits <- function(x) {
 
   df.out <- data.frame(approval.date = as.Date(x$DataAprovacao),
@@ -291,16 +214,7 @@ xml.fct.splits.inplits <- function(x) {
 
 }
 
-#' Reads XML data for repurchases
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for repurchases
 xml.fct.repurchases <- function(x) {
 
   info.stock = x$HistoricosPlanosRecompraClasseEspecieAcao$HistoricoPlanoRecompraClasseEspecieAcao
@@ -321,16 +235,7 @@ xml.fct.repurchases <- function(x) {
 
 }
 
-#' Reads XML data for debt
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for debt
 xml.fct.debt <- function(x) {
 
   df.out <- data.frame(type.debt = fix.fct(x$CodigoTipoObrigacao$DescricaoOpcaoDominio),
@@ -350,16 +255,7 @@ xml.fct.debt <- function(x) {
 
 }
 
-#' Reads XML data for capital reduction data
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for capital reduction data
 xml.fct.capital.reduction <- function(x) {
 
   if (is.null(x)) return(data.frame())
@@ -381,16 +277,7 @@ xml.fct.capital.reduction <- function(x) {
   return(df.out)
 }
 
-#' Reads XML data for commitee composition
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for commitee composition
 xml.fct.committee.composition <- function(x) {
 
   df.out <- data.frame(person.name = fix.fct(x$PessoaMembro$NomePessoa),
@@ -421,16 +308,7 @@ xml.fct.committee.composition <- function(x) {
 
 }
 
-#' Reads XML data for board composition
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for board composition
 xml.fct.board.composition <- function(x) {
 
   df.out <- data.frame(person.name = fix.fct(x$PessoaMembro$NomePessoa),
@@ -463,16 +341,7 @@ xml.fct.board.composition <- function(x) {
 
 }
 
-#' Reads XML data for family relations
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for family relations
 xml.fct.family.relations <- function(x) {
 
   df.out <- data.frame(person.name = fix.fct(x$PessoaAdministrador$NomePessoa),
@@ -489,16 +358,7 @@ xml.fct.family.relations <- function(x) {
 
 }
 
-#' Reads XML data for family related parts
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for family related parts
 xml.fct.family.related.parts <- function(x) {
 
   df.out <- data.frame(person.name = fix.fct(x$AdministradorCadastroPessoa$NomePessoa),
@@ -516,16 +376,7 @@ xml.fct.family.related.parts <- function(x) {
 
 }
 
-#' Reads XML data for auditing
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for auditing
 xml.fct.auditing <- function(x) {
 
   df.out <- data.frame(auditor.name = fix.fct(x$PessoaAuditor$NomePessoa),
@@ -542,16 +393,7 @@ xml.fct.auditing <- function(x) {
 
 }
 
-#' Reads XML data for responsibles documents
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for responsibles documents
 xml.fct.responsible <- function(x) {
 
 
@@ -564,16 +406,7 @@ xml.fct.responsible <- function(x) {
 
 }
 
-#' Reads XML data for stock details
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for stock details
 xml.fct.stocks.details <- function(x) {
 
   df.out <- data.frame(type.stock.id = fix.fct(x$CodigoEspecieAcao),
@@ -592,16 +425,7 @@ xml.fct.stocks.details <- function(x) {
 
 }
 
-#' Reads XML data for div details
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for div details
 xml.fct.div.details <- function(x) {
 
   df.out <- data.frame(net.profit = fix.fct(x$LucroLiquido, type.info = 'numeric'),
@@ -615,16 +439,7 @@ xml.fct.div.details <- function(x) {
 
 }
 
-#' Reads XML data for patents details
-#'
-#' @param x A list with data
-#'
-#' @return A dataframe
-#' @export
-#'
-#' @examples
-#'
-#' # No example (INTERNAL)
+# Reads XML data for patents details
 xml.fct.intangible.details <- function(x) {
 
   df.out <- data.frame(id = fix.fct(x$Id, type.info = 'numeric'),

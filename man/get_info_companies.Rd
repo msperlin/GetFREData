@@ -4,7 +4,7 @@
 \alias{get_info_companies}
 \title{Returns a up to date table with information about B3 companies}
 \usage{
-get_info_companies(cache_folder = "gcvmd_cache")
+get_info_companies(cache_folder = "gfred_cache")
 }
 \arguments{
 \item{cache_folder}{Path of cache folder to keep cache and zip files}
