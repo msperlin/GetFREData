@@ -31,7 +31,7 @@ get_fre_links <- function(companies_cvm_codes,
   # filter by company
   if (!is.null(companies_cvm_codes)) {
     df_fre_files <- df_fre_files %>%
-      filter(CD_CVM %in% companies_cvm_codes)
+      dplyr::filter(CD_CVM %in% companies_cvm_codes)
   }
 
   if (nrow(df_fre_files) == 0 ) {

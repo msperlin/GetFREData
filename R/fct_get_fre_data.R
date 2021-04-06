@@ -41,9 +41,6 @@ get_fre_data <- function(companies_cvm_codes = NULL,
          'Available type_format are: ', paste0(available_options, collapse = ', '))
   }
 
-  my_url <- 'http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/'
-
-
   df_fre_full_links <- get_fre_links(companies_cvm_codes,
                                      first_year,
                                      last_year,
@@ -60,11 +57,15 @@ get_fre_data <- function(companies_cvm_codes = NULL,
       dplyr::slice(which.min(DT_RECEB))
 
   } else if (fre_to_read == 'last') {
+
     df_fre_links_to_read <- df_fre_full_links %>%
       dplyr::group_by(CNPJ_CIA, DT_REFER, DENOM_CIA, CD_CVM) %>%
       dplyr::slice(which.max(DT_RECEB))
+
   } else if (fre_to_read == 'all') {
+
     df_fre_links_to_read <- df_fre_full_links
+
   }
 
   message('\nFound ', nrow(df_fre_links_to_read),
