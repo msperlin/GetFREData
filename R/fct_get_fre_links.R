@@ -56,7 +56,8 @@ download_unzip_read_ftp_fre_files <- function(url_in, cache_folder) {
                    be_quiet = TRUE)
 
   # extract to temp
-  temp_zip_dir <- file.path(tempdir(), dest_file)
+  temp_zip_dir <- file.path(tempdir(),
+                            basename(tempfile()))
   dir.create(temp_zip_dir, recursive = TRUE)
 
   utils::unzip(zipfile = dest_file, junkpaths = TRUE, exdir = temp_zip_dir)
