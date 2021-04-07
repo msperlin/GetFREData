@@ -1,4 +1,3 @@
-
 read_single_fre_zip_file <- function(my_zip_file,
                                      df_file_in,
                                      cache_folder = 'gfred_cache',
