@@ -3,7 +3,8 @@ my_download_file <- function(dl_link,
                              max_dl_tries = 10,
                              be_quiet = TRUE) {
 
-  Sys.sleep(0.5)
+  # no need for sleep in my tests
+  #Sys.sleep(0.05)
 
   if (file.exists(dest_file)) {
 

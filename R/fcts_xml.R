@@ -7,9 +7,14 @@ fix.fct <- function(x, type.info = 'character', format.date = '%Y-%m-%d') {
   }
 
   if (type.info == 'date') {
-    if (nchar(x) > 10) return(as.Date(NA))
+    #if (nchar(x) > 10) return(as.Date(NA))
 
-    x <- as.Date(x, format.date)
+    # make sure date convertion works or return NA
+    as.date.safely <- purrr::safely(as.Date,
+                                    otherwise = NA)
+
+    x <- as.date.safely(x, format.date)
+    x <- x$result
 
     if (is.na(x)) return(x)
 

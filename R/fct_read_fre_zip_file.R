@@ -30,8 +30,8 @@ read_single_fre_zip_file <- function(my_zip_file,
 
   f_cache <- file.path(my_dir,
                        paste0('fre_cache_',
-                              'cvm', df_file_in$CD_CVM, '_',
-                              stringr::str_sub(df_file_in$DENOM_CIA, 1, 10), '_',
+                              df_file_in$CD_CVM, '_',
+                              #stringr::str_sub(df_file_in$DENOM_CIA, 1, 10), '_',
                               lubridate::year(df_file_in$DT_REFER), '_',
                               'id', df_file_in$ID_DOC, '_',
                               'ver', df_file_in$VERSAO, '.rds')
