@@ -1,6 +1,6 @@
 ## Version 0.7 (2021-08-26)
 
-- Fixed issue aggregation of lists
+- Fixed issue in the aggregation of lists
 
 ## Version 0.6 (2021-04-19)
 

@@ -1,5 +1,5 @@
 
-# Package GetFREData
+# GetFREData
 
 `GetFREData` is an R package for downloading information about companies traded at B3, the Brazilian financial exchange. The source of the data is [CVM's ftp site](http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/) and B3's [FRE system](http://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/acoes/consultas/informacoes-por-periodo/), the official registration of all major corporate actions. 
 

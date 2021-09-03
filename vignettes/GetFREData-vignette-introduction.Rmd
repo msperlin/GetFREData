@@ -4,7 +4,7 @@ author: "Marcelo Perlin"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Using GetFREData to import corporate information from B3}
+  %\VignetteIndexEntry{Using GetFREData}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

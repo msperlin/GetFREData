@@ -13,13 +13,10 @@ Imports:
     xml2,
     dplyr,
     readr,
-    curl,
     lubridate,
     magrittr,
     purrr,
-    memoise,
     rvest,
-    tidyr,
     XML
 ByteCompile: true
 License: GPL-2
@@ -27,8 +24,10 @@ BugReports: https://github.com/msperlin/GetFREData/issues
 URL: https://github.com/msperlin/GetFREData/
 LazyData: false
 RoxygenNote: 7.1.1
-Suggests: knitr,
+Suggests: 
+    knitr,
     rmarkdown,
-    testthat,
+    testthat (>= 3.0.0),
     ggplot2
 VignetteBuilder: knitr
+Config/testthat/edition: 3
