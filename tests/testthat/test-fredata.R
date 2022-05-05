@@ -1,6 +1,7 @@
 test_that('info companies', {
 
   skip_on_cran()
+  skip_if_offline()
 
   cache_folder <- tempdir()
   my_info <- get_info_companies(cache_folder = cache_folder)
@@ -15,6 +16,7 @@ test_that('info companies', {
 test_that('main fct', {
 
   skip_on_cran()
+  skip_if_offline()
 
   cache_folder <- tempdir()
 
@@ -26,7 +28,5 @@ test_that('main fct', {
   expect_true(
     (is.list(l_fre)) & (length(l_fre) > 0)
   )
-
-
 
 })

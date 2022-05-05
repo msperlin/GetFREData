@@ -1,3 +1,8 @@
+## Version 0.8.0 (2022-04-07)
+
+- removed Date field in DESCRIPTION file
+- Fixed bug in get_info_companies
+
 ## Version 0.7 (2021-08-26)
 
 - Fixed issue in the aggregation of lists
