@@ -1,9 +1,10 @@
-test_that('info companies', {
+cache_folder <- tempdir()
+
+test_that('fetching info companies (no cache)', {
 
   skip_on_cran()
   skip_if_offline()
 
-  cache_folder <- tempdir()
   my_info <- get_info_companies(cache_folder = cache_folder)
 
   expect_true(
@@ -12,13 +13,23 @@ test_that('info companies', {
 
 })
 
-
-test_that('main fct', {
+test_that('fetching info companies (with cache)', {
 
   skip_on_cran()
   skip_if_offline()
 
-  cache_folder <- tempdir()
+  my_info <- get_info_companies(cache_folder = cache_folder)
+
+  expect_true(
+    (is.data.frame(my_info)) & (nrow(my_info) > 0)
+  )
+
+})
+
+test_that('fetch fre data', {
+
+  skip_on_cran()
+  skip_if_offline()
 
   my_id <- 19615
   l_fre <- get_fre_data(companies_cvm_codes = my_id,

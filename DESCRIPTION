@@ -1,6 +1,6 @@
 Package: GetFREData
 Title: Reading FRE Corporate Data of Public Traded Companies from B3 
-Version: 0.8.0
+Version: 0.8.1
 Authors@R: c(person("Marcelo", "Perlin", email = "marceloperlin@gmail.com", role = c("aut", "cre")),
              person("Guilherme", "Kirch", email = "guilhermekirch@gmail.com", role = c("aut")))  
 Description: Reads corporate data such as board composition and compensation for companies traded at B3, 

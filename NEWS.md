@@ -1,3 +1,7 @@
+## Version 0.8.1 (2022-06-10)
+
+- fixed issue with ftp changing html (same problem as getdfpdata)
+
 ## Version 0.8.0 (2022-04-07)
 
 - removed Date field in DESCRIPTION file
