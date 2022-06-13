@@ -4,7 +4,7 @@ Version: 0.8.1
 Authors@R: c(person("Marcelo", "Perlin", email = "marceloperlin@gmail.com", role = c("aut", "cre")),
              person("Guilherme", "Kirch", email = "guilhermekirch@gmail.com", role = c("aut")))  
 Description: Reads corporate data such as board composition and compensation for companies traded at B3, 
-             the Brazilian exchange <http://www.b3.com.br/>. All data is downloaded and imported from the ftp site <http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/>.
+             the Brazilian exchange <https://www.b3.com.br/>. All data is downloaded and imported from the ftp site <http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/>.
 Depends:
     R (>= 4.0.0)
 Imports: 

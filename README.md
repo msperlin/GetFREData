@@ -1,9 +1,9 @@
 
 # GetFREData
 
-`GetFREData` is an R package for downloading information about companies traded at B3, the Brazilian financial exchange. The source of the data is [CVM's ftp site](http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/) and B3's [FRE system](http://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/acoes/consultas/informacoes-por-periodo/), the official registration of all major corporate actions. 
+`GetFREData` is an R package for downloading information about companies traded at B3, the Brazilian financial exchange. The source of the data is [CVM's ftp site](http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/) and B3's [FRE system](https://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/acoes/consultas/informacoes-por-periodo/), the official registration of all major corporate actions. 
 
-The data available in FRE is a rich and very useful for **corporate finance studies**. See an example  [here](http://bvmf.bmfbovespa.com.br/cias-listadas/empresas-listadas/ResumoDemonstrativosFinanceiros.aspx?codigoCvm=9512&idioma=pt-br). The `GetFREData` currently includes the following tables, starting from 2010:
+The data available in FRE is a rich and very useful for **corporate finance studies**, including the following tables:
 
 - List of stockholders
 - All capital issues 

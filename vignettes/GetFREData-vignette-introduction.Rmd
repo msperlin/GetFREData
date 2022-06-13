@@ -22,7 +22,7 @@ library(knitr)
 
 # Package GetFREData
 
-`GetFREData` is an R package for downloading information about companies traded at B3, the Brazilian financial exchange. The source of the data is B3's [FRE](http://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/acoes/consultas/informacoes-por-periodo/), the official system for the registration of all major corporate actions. 
+`GetFREData` is an R package for downloading information about companies traded at B3, the Brazilian financial exchange. The source of the data is B3's [FRE](https://www.b3.com.br/pt_br/produtos-e-servicos/negociacao/renda-variavel/acoes/consultas/informacoes-por-periodo/), the official system for the registration of all major corporate actions. 
 
 The corporate data includes (since 2010):
 
