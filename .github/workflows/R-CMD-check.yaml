@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [main, master]
   schedule:
-    cron: '*/15 * * * *'
+    - cron: "*/10 * * * *"
 
 name: R-CMD-check
 
