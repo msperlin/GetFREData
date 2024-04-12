@@ -62,7 +62,8 @@ download_unzip_read_ftp_fre_files <- function(url_in, cache_folder) {
     message(' | no cache found, reading zip file')
   }
 
-  dest_file <- file.path(cache_folder, 'ftp_zip_raw',
+  dest_file <- file.path(cache_folder,
+                         paste0('ftp_zip_raw-', Sys.Date()),
                          basename(url_in))
 
   my_download_file(dl_link = url_in,

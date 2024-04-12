@@ -1,3 +1,7 @@
+## Version 0.8.2 (2024-04-12)
+
+- fixed issue with directory of ftp files with FRE links. Now, the folder is `dest_file <- file.path(cache_folder, paste0('ftp_zip_raw-', Sys.Date())`, indexed by day of query. This should facilitate updating the data.
+
 ## Version 0.8.1 (2022-06-10)
 
 - fixed issue with ftp changing html (same problem as getdfpdata)
