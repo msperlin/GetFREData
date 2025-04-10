@@ -1,3 +1,7 @@
+## Version 0.9.0 (2025-04-10)
+
+- added new function get_fre_data2, which downloads data from CVM website (and not b3)
+
 ## Version 0.8.2 (2024-04-12)
 
 - fixed issue with directory of ftp files with FRE links. Now, the folder is `dest_file <- file.path(cache_folder, paste0('ftp_zip_raw-', Sys.Date())`, indexed by day of query. This should facilitate updating the data.
