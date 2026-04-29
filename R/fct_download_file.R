@@ -28,10 +28,11 @@ my_download_file <- function(dl_link,
       # fix for issue 13: https://github.com/msperlin/GetDFPData/issues/13
       my.OS <- tolower(Sys.info()["sysname"])
       if (my.OS %in% c('windows', 'darwin')) {
+
         utils::download.file(url = dl_link,
                              destfile = dest_file,
                              #method = 'wget',
-                             #extra = '--no-check-certificate',
+                             extra = '--no-check-certificate',
                              quiet = TRUE,
                              mode = 'wb')
       } else {
@@ -47,9 +48,9 @@ my_download_file <- function(dl_link,
 
         utils::download.file(url = dl_link,
                              destfile = dest_file,
-                             method = 'wget',
-                             extra = "--ciphers 'DEFAULT:!DH' --no-check-certificate", # use unsecure dl
-                             quiet = T,
+                             method = 'auto',
+                             #extra = "--ciphers 'DEFAULT:!DH' --no-check-certificate", # use unsecure dl
+                             quiet = TRUE,
                              mode = 'wb')
       }
 

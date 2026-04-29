@@ -95,6 +95,8 @@ get_single_year <- function(year, cache_folder) {
     temp_zip <- fs::file_temp(ext = 'zip')
 
     cli::cli_alert_info("downloading {basename(this_link)}")
+
+
     my_download_file(this_link, temp_zip, be_quiet = TRUE)
 
     fs::file_copy(temp_zip, dest_file)

@@ -4,3 +4,5 @@
 .github
 ^\.github$
 ^CRAN-SUBMISSION$
+^\.positai$
+^\.claude$

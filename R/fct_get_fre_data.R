@@ -26,6 +26,12 @@ get_fre_data <- function(companies_cvm_codes = NULL,
                          fre_to_read = 'last',
                          cache_folder = 'gfred_cache') {
 
+  lifecycle::deprecate_stop(
+    when = "1.0.0",
+    what = "get_fre_data()",
+    with = "get_fre_data2()"
+    )
+
   if ((!is.null(companies_cvm_codes)) & (!is.numeric(companies_cvm_codes))) {
     stop('Input companies_cvm_codes should be numeric (e.g. ')
   }
