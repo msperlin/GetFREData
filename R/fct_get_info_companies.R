@@ -3,7 +3,7 @@
 #' Imports a dataset from cvm <http://sistemas.cvm.gov.br/cadastro/SPW_CIA_ABERTA.ZIP>, containing
 #' up to date information about companies, active or not.
 #'
-#' @inheritParams get_fre_data
+#' @inheritParams get_fre_data2
 #'
 #' @return A dataframe with several information about B3 companies
 #' @export

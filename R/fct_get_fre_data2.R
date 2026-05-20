@@ -157,9 +157,11 @@ read_single_csv <- function(f_csv) {
     stringr::str_remove(glue::glue("_{year_str}.csv"))
 
   my_locale <- readr::locale(decimal_mark = ',', encoding = "Latin1")
-  df <- readr::read_csv2(f_csv, locale = my_locale,
-                         col_types = readr::cols(.default = readr::col_character()),
-                         show_col_types = FALSE) |>
+  df <- suppressWarnings(
+    readr::read_csv2(f_csv, locale = my_locale,
+                     col_types = readr::cols(.default = readr::col_character()),
+                     show_col_types = FALSE)
+  ) |>
     janitor::clean_names() |>
     dplyr::mutate(source_file = basename(f_csv))
 
@@ -196,14 +198,14 @@ fix_df <- function(df_in) {
   all_numbers <- stringr::str_subset(all_names, paste0(str_num_cols, collapse = "|"))
 
   for (i_col in all_numbers) {
-    df_in[[i_col]] <- as.numeric(df_in[[i_col]] )
+    df_in[[i_col]] <- suppressWarnings(as.numeric(df_in[[i_col]]))
   }
 
   str_dates_cols <- c("dt_", "data_")
   all_dates <- stringr::str_subset(all_names, paste0(str_dates_cols, collapse = "|"))
 
   for (i_col in all_dates) {
-    df_in[[i_col]] <- as.Date(df_in[[i_col]] )
+    df_in[[i_col]] <- suppressWarnings(as.Date(df_in[[i_col]]))
   }
 
   return(df_in)

@@ -1,3 +1,9 @@
+## Version 1.0.1 (2026-05-20)
+
+- Added `clean_fre_cache()` utility to allow users to clear down local raw ZIP and parsed RDS files.
+- Suppressed expected coercion warnings during CSV file parsing and column format conversions in `get_fre_data2()`.
+- Updated all user documentation, vignettes, and roxygen example references to use the active `get_fre_data2()` function instead of deprecated `get_fre_data()`.
+
 ## Version 0.9.0 (2025-04-10)
 
 - added new function get_fre_data2, which downloads data from CVM website (and not b3)

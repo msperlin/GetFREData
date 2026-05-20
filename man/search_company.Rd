@@ -9,7 +9,7 @@ search_company(char_to_search, cache_folder = "gfred_cache")
 \arguments{
 \item{char_to_search}{Character for partial matching}
 
-\item{cache_folder}{Path of cache folder to keep cache and zip files}
+\item{cache_folder}{Path of cache folder to keep cache and zip files (default = 'gfred_cache')}
 }
 \value{
 A dataframe with companies

@@ -31,3 +31,23 @@ test_that('fetch fre data using get_fre_data2 with cache', {
   )
 
 })
+
+test_that('clean_fre_cache works correctly', {
+
+  temp_cache <- fs::file_temp('fre-cache-test')
+  fs::dir_create(temp_cache)
+
+  fs::file_create(fs::path(temp_cache, "dummy.txt"))
+
+  expect_true(fs::dir_exists(temp_cache))
+
+  res <- clean_fre_cache(cache_folder = temp_cache)
+
+  expect_true(res)
+  expect_false(fs::dir_exists(temp_cache))
+
+  res_again <- clean_fre_cache(cache_folder = temp_cache)
+  expect_false(res_again)
+
+})
+

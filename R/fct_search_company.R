@@ -1,7 +1,7 @@
 #' Helps users search for a company
 #'
 #' @param char_to_search Character for partial matching
-#' @inheritParams get_fre_data
+#' @inheritParams get_fre_data2
 #'
 #' @return A dataframe with companies
 #' @export
