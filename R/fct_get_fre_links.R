@@ -5,7 +5,7 @@ get_fre_links <- function(companies_cvm_codes,
 
   message('Fetching ftp contents')
 
-  my_url <- 'http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/'
+  my_url <- 'https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/'
 
   # avoid cran note
   year_files <- filter <- CD_CVM <- NULL

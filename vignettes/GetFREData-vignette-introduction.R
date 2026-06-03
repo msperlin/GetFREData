@@ -1,4 +1,4 @@
-## ---- include = FALSE---------------------------------------------------------
+## ----include = FALSE----------------------------------------------------------
 knitr::opts_chunk$set(
   eval = FALSE,
   comment = "#>",
@@ -7,25 +7,25 @@ knitr::opts_chunk$set(
 )
 library(knitr)
 
-## ---- eval=FALSE--------------------------------------------------------------
-#  # CRAN (stable)
-#  install.packages('GetFREData')
-#  
-#  # github (development)
-#  if (!require(devtools)) install.packages('devtools')
-#  if (!require(GetFREData)) devtools::install_github('msperlin/GetFREData')
+## ----eval=FALSE---------------------------------------------------------------
+# # CRAN (stable)
+# install.packages('GetFREData')
+# 
+# # github (development)
+# if (!require(devtools)) install.packages('devtools')
+# if (!require(GetFREData)) devtools::install_github('msperlin/GetFREData')
 
 ## -----------------------------------------------------------------------------
-#  library(GetFREData)
-#  library(tidyverse)
-#  
-#  search_company('grendene',
-#                 cache_folder = tempdir())
-#  
-#  l_fre <- get_fre_data2(first_year = 2020,
-#                        last_year = 2020,
-#                        cache_folder = tempdir())
-#  
-#  glimpse(l_fre)
-
+# library(GetFREData)
+# library(tidyverse)
+# 
+# search_company('grendene',
+#                cache_folder = tempdir())
+# 
+# l_fre <- get_fre_data2(first_year = 2020,
+#                       last_year = 2020,
+#                       cache_folder = tempdir())
+# 
+# glimpse(l_fre)
+# 
 

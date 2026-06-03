@@ -184,7 +184,7 @@ read_single_csv <- function(f_csv) {
 }
 
 get_base_url <- function() {
-  my_url <- 'http://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/'
+  my_url <- 'https://dados.cvm.gov.br/dados/CIA_ABERTA/DOC/FRE/DADOS/'
   return(my_url)
 }
 

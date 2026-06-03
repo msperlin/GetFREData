@@ -13,7 +13,7 @@ get_info_companies(cache_folder = "gfred_cache")
 A dataframe with several information about B3 companies
 }
 \description{
-Imports a dataset from cvm <http://sistemas.cvm.gov.br/cadastro/SPW_CIA_ABERTA.ZIP>, containing
+Imports a dataset from cvm <https://sistemas.cvm.gov.br/cadastro/SPW_CIA_ABERTA.ZIP>, containing
 up to date information about companies, active or not.
 }
 \examples{
