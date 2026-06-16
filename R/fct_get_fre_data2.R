@@ -23,6 +23,8 @@ get_fre_data2 <- function(first_year = lubridate::year(lubridate::today()) - 1,
     cli::cli_abort('CVM FRE data is only available after 2010...')
   }
 
+  fs::dir_create(cache_folder, recurse = TRUE)
+
   vec_year <- first_year:last_year
 
   l_raw <- purrr::map(vec_year, get_single_year,
