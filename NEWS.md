@@ -1,3 +1,25 @@
+## Version 1.1.0 (2026-08-29)
+
+### New features
+
+- Added `companies_cvm_codes` argument to `get_fre_data2()`, allowing users to filter results by one or more CVM company codes.
+- Added comprehensive input validation to `get_fre_data2()`: type and range checks for `first_year`/`last_year`, a warning when requesting future years, and type checking for `companies_cvm_codes`.
+
+### Bug fixes
+
+- Fixed a crash in the download helper where `file.size()` was called on a non-existent file after a failed download attempt.
+- Download failures now raise a clear error (`cli::cli_abort()`) instead of silently returning `FALSE`, which previously led to confusing downstream errors.
+
+### Breaking changes
+
+- Removed the accidentally exported `my_fix_cols()` function from the public API. This was an internal helper and should not have been exported.
+
+### Code cleanup
+
+- Removed ~1,100 lines of dead code from the deprecated `get_fre_data()` XML pipeline: `fcts_xml.R`, `fct_read_fre_zip_file.R`, `fct_get_fre_links.R`, and `fct_utils.R`. The `get_fre_data()` function remains as a minimal deprecation stub pointing users to `get_fre_data2()`.
+- Dropped `XML` and `magrittr` from package dependencies.
+- Migrated all remaining `%>%` (magrittr pipe) usage to the native R pipe (`|>`).
+
 ## Version 1.0.1 (2026-05-20)
 
 - Added `clean_fre_cache()` utility to allow users to clear down local raw ZIP and parsed RDS files.
