@@ -7,7 +7,7 @@
 get_info_companies(cache_folder = "gfred_cache")
 }
 \arguments{
-\item{cache_folder}{Path of cache folder to keep cache and zip files (default = 'gfred_cache')}
+\item{cache_folder}{Path of cache folder to keep cache, raw zip files, and parsed RDS files (default = 'gfred_cache').}
 }
 \value{
 A dataframe with several information about B3 companies

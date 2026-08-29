@@ -3,7 +3,11 @@
 ### New features
 
 - Added `companies_cvm_codes` argument to `get_fre_data2()`, allowing users to filter results by one or more CVM company codes.
-- Added comprehensive input validation to `get_fre_data2()`: type and range checks for `first_year`/`last_year`, a warning when requesting future years, and type checking for `companies_cvm_codes`.
+- Cleaned table names in the output list by stripping the redundant `fre_cia_aberta_` prefix (e.g. `capital_social` instead of `cia_aberta_capital_social`).
+- Added `verbose` logical parameter to `get_fre_data2()` to allow controlling or suppressing informative console output.
+- Added parsed RDS caching in `cache_folder/parsed-rds/` so subsequent calls for previously parsed years load instantly from cached RDS files without re-unzipping or re-parsing CSVs.
+- Added comprehensive input validation to `get_fre_data2()`: type and range checks for `first_year`/`last_year`, `verbose`, a warning when requesting future years, and type checking for `companies_cvm_codes`.
+- Added `_pkgdown.yml` for website configuration and package-level documentation (`?GetFREData`).
 
 ### Bug fixes
 
@@ -13,6 +17,11 @@
 ### Breaking changes
 
 - Removed the accidentally exported `my_fix_cols()` function from the public API. This was an internal helper and should not have been exported.
+
+### Testing & Infrastructure
+
+- Expanded unit test coverage with offline tests for CSV parsing helpers (`fix_single_name()`, `read_single_csv()`, `fix_df()`), input validation, and deprecation stubs.
+- Updated GitHub Actions workflow to `@v4` (`actions/checkout@v4`).
 
 ### Code cleanup
 

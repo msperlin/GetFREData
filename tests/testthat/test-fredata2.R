@@ -9,11 +9,21 @@ test_that('fetch fre data using get_fre_data2', {
 
   l_fre <- get_fre_data2(first_year = 2020,
                          last_year = 2020,
-                         cache_folder = cache_folder)
+                         cache_folder = cache_folder,
+                         verbose = FALSE)
 
   expect_true(
     (is.list(l_fre)) & (length(l_fre) > 0)
   )
+
+  # Test filtering by CVM code
+  l_fre_filtered <- get_fre_data2(first_year = 2020,
+                                  last_year = 2020,
+                                  companies_cvm_codes = c(9512),
+                                  cache_folder = cache_folder,
+                                  verbose = FALSE)
+
+  expect_true(is.list(l_fre_filtered))
 
 })
 
@@ -24,7 +34,8 @@ test_that('fetch fre data using get_fre_data2 with cache', {
 
   l_fre <- get_fre_data2(first_year = 2020,
                          last_year = 2020,
-                         cache_folder = cache_folder)
+                         cache_folder = cache_folder,
+                         verbose = FALSE)
 
   expect_true(
     (is.list(l_fre)) & (length(l_fre) > 0)
@@ -50,4 +61,3 @@ test_that('clean_fre_cache works correctly', {
   expect_false(res_again)
 
 })
-

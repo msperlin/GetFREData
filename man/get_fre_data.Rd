@@ -13,9 +13,9 @@ get_fre_data(...)
 Nothing; always errors.
 }
 \description{
-\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+`r lifecycle::badge("deprecated")`
 
-\code{get_fre_data()} was deprecated in v1.0.0 in favour of \code{\link{get_fre_data2}}.
+`get_fre_data()` was deprecated in v1.0.0 in favour of [get_fre_data2()].
 }
 \examples{
 \dontrun{

@@ -8,33 +8,54 @@ get_fre_data2(
   first_year = lubridate::year(lubridate::today()) - 1,
   last_year = lubridate::year(lubridate::today()),
   companies_cvm_codes = NULL,
-  cache_folder = get_default_cache_dir()
+  cache_folder = get_default_cache_dir(),
+  verbose = TRUE
 )
 }
 \arguments{
-\item{first_year}{First year of selected data}
+\item{first_year}{First year of selected data. CVM FRE data is available from 2010 onwards.}
 
-\item{last_year}{Last year of selected data}
+\item{last_year}{Last year of selected data.}
 
 \item{companies_cvm_codes}{Numeric vector of CVM company codes to filter.
 If \code{NULL} (default), returns data for all available companies.
 Use \code{\link{search_company}} to look up CVM codes.}
 
-\item{cache_folder}{Path of cache folder to keep cache and zip files (default = 'gfred_cache')}
+\item{cache_folder}{Path of cache folder to keep cache, raw zip files, and parsed RDS files (default = 'gfred_cache').}
+
+\item{verbose}{Logical. Whether to print informative messages during execution (default = TRUE).}
 }
 \value{
-A list of tibbles, where each element is a different table from the FRE system
+A list of tibbles, where each element is a different table from the FRE system.
 }
 \description{
 The FRE (formularios de referencia) is the reporting system of companies
 traded at B3. This function will access the CVM ftp and parse all available files according to user
 choices such as dates and companies.
 }
+\details{
+The resulting list contains tibbles corresponding to individual tables published in the FRE reports:
+\itemize{
+  \item \code{acionador}: Stockholders details and equity participation
+  \item \code{capital_social}: Share capital structure and issued shares
+  \item \code{posicao_acionaria}: Equity ownership structure
+  \item \code{administrador_membro_conselho_fiscal}: Board and director composition
+  \item \code{remuneracao_reconhecida_administradores}: Executive compensation details
+  \item \code{remuneracao_orgaos}: Summary of remuneration by corporate body
+  \item \code{auditor_formulario_referencia}: Independent audit firm details
+  \item \code{distribuicao_dividendo}: Dividend distributions and payout metrics
+  \item \code{dividas}: Debt composition by maturity and guarantee
+  \item And other corporate disclosures.
+}
+
+Parsed files are automatically cached as RDS objects in \code{cache_folder/parsed-rds/}
+to accelerate subsequent queries for the same years.
+}
 \examples{
 \dontrun{
-l_fre <- get_fre_data2(cache_folder = fs::file_temp("fre-cache"))
+l_fre <- get_fre_data2(first_year = 2020, last_year = 2020, cache_folder = tempdir())
 
-# Filter by company
-l_fre <- get_fre_data2(companies_cvm_codes = c(9512, 18627))
+# Filter by CVM company codes silently
+l_fre <- get_fre_data2(companies_cvm_codes = c(9512, 18627), verbose = FALSE)
 }
 }

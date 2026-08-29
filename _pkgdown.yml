@@ -1,0 +1,17 @@
+url: https://msperlin.github.io/GetFREData/
+
+template:
+  bootstrap: 5
+
+reference:
+- title: Downloading FRE Data
+  contents:
+  - get_fre_data2
+  - search_company
+  - get_info_companies
+- title: Utilities & Maintenance
+  contents:
+  - clean_fre_cache
+- title: Deprecated
+  contents:
+  - get_fre_data
