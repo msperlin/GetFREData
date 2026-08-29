@@ -9,8 +9,8 @@ Depends:
     R (>= 4.1.0)
 Imports: 
     stringr, xml2, dplyr, readr,
-    lubridate, magrittr, purrr,
-    rvest, XML, GetDFPData2, utils,
+    lubridate, purrr,
+    rvest, GetDFPData2, utils,
     cli, fs, glue, janitor, lifecycle
 ByteCompile: true
 Encoding: UTF-8

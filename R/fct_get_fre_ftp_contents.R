@@ -2,9 +2,9 @@ get_contents_ftp <- function(ftp_url) {
 
   my_html <- xml2::read_html(ftp_url)
 
-  all_links <- my_html %>%
-    rvest::html_node('pre') %>%
-    rvest::html_nodes('a') %>%
+  all_links <- my_html |>
+    rvest::html_node('pre') |>
+    rvest::html_nodes('a') |>
     rvest::html_text()
 
   idx <- stringr::str_detect(
@@ -19,7 +19,7 @@ get_contents_ftp <- function(ftp_url) {
 
   df_out <- dplyr::tibble(file_name = all_links,
                           full_links,
-                          year_files) %>%
+                          year_files) |>
     dplyr::arrange(year_files)
 
   return(df_out)

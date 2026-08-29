@@ -2,38 +2,24 @@
 % Please edit documentation in R/fct_get_fre_data.R
 \name{get_fre_data}
 \alias{get_fre_data}
-\title{Downloads and reads FRE datasets}
+\title{Downloads and reads FRE datasets (deprecated)}
 \usage{
-get_fre_data(
-  companies_cvm_codes = NULL,
-  first_year = lubridate::year(Sys.Date()) - 2,
-  last_year = lubridate::year(Sys.Date()),
-  fre_to_read = "last",
-  cache_folder = "gfred_cache"
-)
+get_fre_data(...)
 }
 \arguments{
-\item{companies_cvm_codes}{Numeric CVM code  of companies. IF set to NULL (default), will return data for all available companies.}
-
-\item{first_year}{First year of selected data}
-
-\item{last_year}{Last year of selected data}
-
-\item{fre_to_read}{Whether to read 'first', 'last' or 'all' fre docs ('last' is default).
-Be aware that companies do release several FRE docs for a single year.}
-
-\item{cache_folder}{Path of cache folder to keep cache and zip files}
+\item{...}{Ignored.}
 }
 \value{
-A list of tibbles, where each element is a different table from the FRE system
+Nothing; always errors.
 }
 \description{
-The FRE (formularios de referencia) is the reporting system of companies
-traded at B3. This function will access the CVM ftp and parse all available files according to user
-choices such as dates and companies.
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#deprecated}{\figure{lifecycle-deprecated.svg}{options: alt='[Deprecated]'}}}{\strong{[Deprecated]}}
+
+\code{get_fre_data()} was deprecated in v1.0.0 in favour of \code{\link{get_fre_data2}}.
 }
 \examples{
 \dontrun{
-l_fre <- get_fre_data(18627)
+# Use get_fre_data2() instead
+l_fre <- get_fre_data2()
 }
 }

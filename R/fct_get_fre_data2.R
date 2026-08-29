@@ -6,6 +6,9 @@
 #'
 #' @param first_year First year of selected data
 #' @param last_year Last year of selected data
+#' @param companies_cvm_codes Numeric vector of CVM company codes to filter.
+#'   If \code{NULL} (default), returns data for all available companies.
+#'   Use \code{\link{search_company}} to look up CVM codes.
 #' @param cache_folder Path of cache folder to keep cache and zip files (default = 'gfred_cache')
 #'
 #' @return A list of tibbles, where each element is a different table from the FRE system
@@ -14,13 +17,35 @@
 #' @examples
 #' \dontrun{
 #' l_fre <- get_fre_data2(cache_folder = fs::file_temp("fre-cache"))
+#'
+#' # Filter by company
+#' l_fre <- get_fre_data2(companies_cvm_codes = c(9512, 18627))
 #' }
 get_fre_data2 <- function(first_year = lubridate::year(lubridate::today()) - 1,
                           last_year = lubridate::year(lubridate::today()),
+                          companies_cvm_codes = NULL,
                           cache_folder = get_default_cache_dir()) {
 
+  # -- input validation --
+  if (!is.numeric(first_year) || length(first_year) != 1) {
+    cli::cli_abort("{.arg first_year} must be a single numeric value.")
+  }
+  if (!is.numeric(last_year) || length(last_year) != 1) {
+    cli::cli_abort("{.arg last_year} must be a single numeric value.")
+  }
+  if (first_year > last_year) {
+    cli::cli_abort(
+      "{.arg first_year} ({first_year}) must be <= {.arg last_year} ({last_year})."
+    )
+  }
   if (first_year < 2010) {
-    cli::cli_abort('CVM FRE data is only available after 2010...')
+    cli::cli_abort('CVM FRE data is only available from 2010 onwards.')
+  }
+  if (last_year > lubridate::year(lubridate::today())) {
+    cli::cli_warn("Requesting future year {last_year}; data may not be available yet.")
+  }
+  if (!is.null(companies_cvm_codes) && !is.numeric(companies_cvm_codes)) {
+    cli::cli_abort("{.arg companies_cvm_codes} must be a numeric vector of CVM codes.")
   }
 
   fs::dir_create(cache_folder, recurse = TRUE)
@@ -50,6 +75,19 @@ get_fre_data2 <- function(first_year = lubridate::year(lubridate::today()) - 1,
   cli::cli_alert_info('fixing dataframes')
 
   l_out2 <- purrr::map(l_out, fix_df)
+
+  # -- filter by company if requested --
+  if (!is.null(companies_cvm_codes)) {
+    cli::cli_alert_info('filtering by {length(companies_cvm_codes)} CVM code(s)')
+
+    filter_by_company <- function(df) {
+      if ("cd_cvm" %in% names(df)) {
+        df <- dplyr::filter(df, as.numeric(.data$cd_cvm) %in% companies_cvm_codes)
+      }
+      df
+    }
+    l_out2 <- purrr::map(l_out2, filter_by_company)
+  }
 
   message("")
   cli::cli_alert_success('got list of dataframes with {length(l_out2)} elements')

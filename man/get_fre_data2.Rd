@@ -7,6 +7,7 @@
 get_fre_data2(
   first_year = lubridate::year(lubridate::today()) - 1,
   last_year = lubridate::year(lubridate::today()),
+  companies_cvm_codes = NULL,
   cache_folder = get_default_cache_dir()
 )
 }
@@ -14,6 +15,10 @@ get_fre_data2(
 \item{first_year}{First year of selected data}
 
 \item{last_year}{Last year of selected data}
+
+\item{companies_cvm_codes}{Numeric vector of CVM company codes to filter.
+If \code{NULL} (default), returns data for all available companies.
+Use \code{\link{search_company}} to look up CVM codes.}
 
 \item{cache_folder}{Path of cache folder to keep cache and zip files (default = 'gfred_cache')}
 }
@@ -28,5 +33,8 @@ choices such as dates and companies.
 \examples{
 \dontrun{
 l_fre <- get_fre_data2(cache_folder = fs::file_temp("fre-cache"))
+
+# Filter by company
+l_fre <- get_fre_data2(companies_cvm_codes = c(9512, 18627))
 }
 }
