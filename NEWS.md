@@ -22,6 +22,7 @@
 
 - Expanded unit test coverage with offline tests for CSV parsing helpers (`fix_single_name()`, `read_single_csv()`, `fix_df()`), input validation, and deprecation stubs.
 - Updated GitHub Actions workflow to `@v4` (`actions/checkout@v4`).
+- Resolved `R CMD check` NOTE regarding undefined global variable `.data` in `filter_by_company()`, reaching a clean `Status: OK` (0 ERRORS, 0 WARNINGS, 0 NOTES).
 
 ### Code cleanup
 
