@@ -258,11 +258,12 @@ read_single_csv <- function(f_csv) {
     stringr::str_remove(glue::glue("_{year_str}.csv"))
 
   my_locale <- readr::locale(decimal_mark = ',', encoding = "Latin1")
-  df <- suppressWarnings(
+  df <- suppressMessages(suppressWarnings(
     readr::read_csv2(f_csv, locale = my_locale,
                      col_types = readr::cols(.default = readr::col_character()),
-                     show_col_types = FALSE)
-  ) |>
+                     show_col_types = FALSE,
+                     progress = FALSE)
+  )) |>
     janitor::clean_names() |>
     dplyr::mutate(source_file = basename(f_csv))
 

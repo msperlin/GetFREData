@@ -9,10 +9,11 @@
 - Added comprehensive input validation to `get_fre_data2()`: type and range checks for `first_year`/`last_year`, `verbose`, a warning when requesting future years, and type checking for `companies_cvm_codes`.
 - Added `_pkgdown.yml` for website configuration and package-level documentation (`?GetFREData`).
 
-### Bug fixes
+### Bug fixes & usability
 
 - Fixed a crash in the download helper where `file.size()` was called on a non-existent file after a failed download attempt.
 - Download failures now raise a clear error (`cli::cli_abort()`) instead of silently returning `FALSE`, which previously led to confusing downstream errors.
+- Suppressed `readr`'s CSV reading progress and speed messages (`progress = FALSE`, `suppressMessages()`) during dataset parsing.
 
 ### Breaking changes
 
