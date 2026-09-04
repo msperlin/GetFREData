@@ -27,10 +27,14 @@
 #'   \item And other corporate disclosures.
 #' }
 #'
+#' All tables in the returned list include the \code{cd_cvm} column (CVM company code),
+#' enabling consistent cross-table joining and filtering by company.
+#'
 #' Parsed files are automatically cached as RDS objects in \code{cache_folder/parsed-rds/}
 #' to accelerate subsequent queries for the same years.
 #'
 #' @return A list of tibbles, where each element is a different table from the FRE system.
+#'   All tables include the \code{cd_cvm} column, allowing consistent filtering across the entire dataset.
 #' @export
 #'
 #' @examples
@@ -105,6 +109,7 @@ get_fre_data2 <- function(first_year = lubridate::year(lubridate::today()) - 1,
   }
 
   l_out2 <- purrr::map(l_out, fix_df)
+  l_out2 <- add_cd_cvm_to_tables(l_out2)
 
   # -- filter by company if requested --
   if (!is.null(companies_cvm_codes)) {
@@ -114,7 +119,7 @@ get_fre_data2 <- function(first_year = lubridate::year(lubridate::today()) - 1,
 
     filter_by_company <- function(df) {
       if ("cd_cvm" %in% names(df)) {
-        idx <- as.numeric(df$cd_cvm) %in% companies_cvm_codes
+        idx <- suppressWarnings(as.numeric(df$cd_cvm)) %in% companies_cvm_codes
         df <- df[idx, , drop = FALSE]
       }
       df
@@ -211,6 +216,8 @@ get_single_year <- function(year, cache_folder, verbose = TRUE) {
 
   names(l_csv) <- fixed_names
 
+  l_csv <- add_cd_cvm_to_tables(l_csv)
+
   # Save to parsed RDS cache
   fs::dir_create(dirname(parsed_cache_file), recurse = TRUE)
   readr::write_rds(l_csv, parsed_cache_file)
@@ -306,4 +313,59 @@ fix_df <- function(df_in) {
 
   return(df_in)
 
+}
+
+add_cd_cvm_to_tables <- function(l_dfs) {
+  if (!"cia_aberta" %in% names(l_dfs)) {
+    return(l_dfs)
+  }
+
+  cia <- l_dfs[["cia_aberta"]]
+  if (!"cd_cvm" %in% names(cia)) {
+    return(l_dfs)
+  }
+
+  map_id <- NULL
+  if ("id_doc" %in% names(cia)) {
+    valid_id <- !is.na(cia$id_doc) & !is.na(cia$cd_cvm)
+    if (any(valid_id)) {
+      sub_id <- unique(cia[valid_id, c("id_doc", "cd_cvm")])
+      sub_id <- sub_id[!duplicated(sub_id$id_doc), ]
+      map_id <- stats::setNames(as.character(sub_id$cd_cvm), as.character(sub_id$id_doc))
+    }
+  }
+
+  map_cnpj <- NULL
+  if ("cnpj_cia" %in% names(cia)) {
+    valid_cnpj <- !is.na(cia$cnpj_cia) & !is.na(cia$cd_cvm)
+    if (any(valid_cnpj)) {
+      sub_cnpj <- unique(cia[valid_cnpj, c("cnpj_cia", "cd_cvm")])
+      sub_cnpj <- sub_cnpj[!duplicated(sub_cnpj$cnpj_cia), ]
+      map_cnpj <- stats::setNames(as.character(sub_cnpj$cd_cvm), as.character(sub_cnpj$cnpj_cia))
+    }
+  }
+
+  l_dfs <- purrr::map(l_dfs, function(df) {
+    if ("cd_cvm" %in% names(df)) {
+      return(df)
+    }
+
+    if (!is.null(map_id) && "id_documento" %in% names(df)) {
+      df$cd_cvm <- unname(map_id[as.character(df$id_documento)])
+    } else if (!is.null(map_cnpj) && "cnpj_companhia" %in% names(df)) {
+      df$cd_cvm <- unname(map_cnpj[as.character(df$cnpj_companhia)])
+    } else {
+      df$cd_cvm <- rep(NA_character_, nrow(df))
+    }
+
+    df <- dplyr::relocate(
+      df,
+      "cd_cvm",
+      .after = dplyr::any_of(c("id_documento", "cnpj_companhia", "cnpj_cia"))
+    )
+
+    return(df)
+  })
+
+  return(l_dfs)
 }

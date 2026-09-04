@@ -1,3 +1,9 @@
+## Version 1.2.0 (2026-09-04)
+
+### New features
+
+- Populated `cd_cvm` across all tables returned by `get_fre_data2()` (mapped from `cia_aberta` via document ID with CNPJ fallback), ensuring `companies_cvm_codes` filters all tables in the output.
+
 ## Version 1.1.0 (2026-08-29)
 
 ### New features

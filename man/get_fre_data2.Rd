@@ -27,6 +27,7 @@ Use \code{\link{search_company}} to look up CVM codes.}
 }
 \value{
 A list of tibbles, where each element is a different table from the FRE system.
+  All tables include the \code{cd_cvm} column, allowing consistent filtering across the entire dataset.
 }
 \description{
 The FRE (formularios de referencia) is the reporting system of companies
@@ -47,6 +48,9 @@ The resulting list contains tibbles corresponding to individual tables published
   \item \code{dividas}: Debt composition by maturity and guarantee
   \item And other corporate disclosures.
 }
+
+All tables in the returned list include the \code{cd_cvm} column (CVM company code),
+enabling consistent cross-table joining and filtering by company.
 
 Parsed files are automatically cached as RDS objects in \code{cache_folder/parsed-rds/}
 to accelerate subsequent queries for the same years.

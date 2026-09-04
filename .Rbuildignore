@@ -8,3 +8,4 @@
 ^\.claude$
 ^\.antigravitycli$
 ^_pkgdown\.yml$
+^gfred_cache$

@@ -16,6 +16,9 @@ test_that('fetch fre data using get_fre_data2', {
     (is.list(l_fre)) & (length(l_fre) > 0)
   )
 
+  # Check that ALL tables have cd_cvm
+  expect_true(all(sapply(l_fre, function(df) "cd_cvm" %in% names(df))))
+
   # Test filtering by CVM code
   l_fre_filtered <- get_fre_data2(first_year = 2020,
                                   last_year = 2020,
@@ -24,6 +27,16 @@ test_that('fetch fre data using get_fre_data2', {
                                   verbose = FALSE)
 
   expect_true(is.list(l_fre_filtered))
+
+  # Check that ALL tables have cd_cvm in filtered output
+  expect_true(all(sapply(l_fre_filtered, function(df) "cd_cvm" %in% names(df))))
+
+  # Check that all non-empty tables only contain data for CVM 9512
+  all_9512 <- all(sapply(l_fre_filtered, function(df) {
+    if (nrow(df) == 0) return(TRUE)
+    all(as.numeric(df$cd_cvm) == 9512)
+  }))
+  expect_true(all_9512)
 
 })
 
@@ -40,6 +53,9 @@ test_that('fetch fre data using get_fre_data2 with cache', {
   expect_true(
     (is.list(l_fre)) & (length(l_fre) > 0)
   )
+
+  # Check that ALL tables from cached RDS have cd_cvm
+  expect_true(all(sapply(l_fre, function(df) "cd_cvm" %in% names(df))))
 
 })
 
